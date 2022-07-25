@@ -8,5 +8,21 @@ const Logo = styled.img`
     css`
       width: 80px;
     `}
+
+  ${(props) =>
+    props.xSmall &&
+    css`
+      width: 55px;
+      cursor: pointer;
+    `}
+    
+  ${(props) =>
+    props.pointer &&
+    css`
+      cursor: pointer;
+      background-color: ${(props) => props.theme.color.black};
+      padding: 15px;
+      border-radius: 10px;
+    `}
 `;
 export default Logo;

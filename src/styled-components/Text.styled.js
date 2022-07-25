@@ -14,16 +14,26 @@ export const Title = styled.h1`
 export const Paragraph = styled.p`
   font-size: ${(props) => props.theme.fontSize.small};
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   color: ${(props) => props.theme.color.white};
   ${(props) =>
-    props.small &&
+    props.xsmall &&
     css`
       font-size: ${(props) => props.theme.fontSize.xSmall};
     `}
   ${(props) =>
+    props.xxsmall &&
+    css`
+      font-size: ${(props) => props.theme.fontSize.xxSmall};
+    `}
+    
+  ${(props) =>
     props.gray &&
     css`
-      color: ${(props) => props.theme.color.gray};
+      color: ${(props) => props.theme.color.lightGray};
     `};
   ${(props) =>
     props.bold &&

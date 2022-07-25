@@ -5,12 +5,22 @@ const ContentField = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 25px;
-  padding: 20px 0;
+  gap: 10px;
+  padding: 10px 0;
   ${(props) =>
     props.column &&
     css`
       flex-direction: column;
+    `}
+  ${(props) =>
+    props.end &&
+    css`
+      align-items: flex-end;
+    `}
+  ${(props) =>
+    props.start &&
+    css`
+      align-items: flex-start;
     `}
 `;
 export default ContentField;

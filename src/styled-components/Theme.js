@@ -13,6 +13,7 @@ const Theme = {
     medium: "25px",
     small: "22px",
     xSmall: "20px",
+    xxSmall: "16px",
   },
 };
 
