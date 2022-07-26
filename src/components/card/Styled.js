@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Content = styled.div`
   width: 100%;
@@ -26,4 +26,12 @@ export const CardFooter = styled.article`
   border-radius: 0 0 12px 12px;
   padding: 20px;
   gap: 10px;
+  ${(props) =>
+    props.scroll &&
+    css`
+      overflow-y: scroll;
+      height: 500px;
+      padding-bottom: 100px;
+      padding-top: 100px;
+    `}
 `;

@@ -7,7 +7,7 @@ const Message = ({ end, start }) => {
     <ContentField end={end} column start={start}>
       <article>
         <Paragraph gray xxsmall>
-          2022/07/25 17:15<SubTitle>tu</SubTitle> <Logo small src="/perfil.png" alt="perfil" />
+          2022/07/25 17:15<SubTitle>tu</SubTitle> <Logo xSmall src="/perfil.png" alt="perfil" />
         </Paragraph>
       </article>
       <article>

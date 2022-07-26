@@ -6,22 +6,26 @@ const Logo = styled.img`
   ${(props) =>
     props.small &&
     css`
-      width: 80px;
+      width: 75px;
     `}
 
   ${(props) =>
     props.xSmall &&
     css`
-      width: 55px;
-      cursor: pointer;
+      width: 35px;
     `}
     
   ${(props) =>
     props.pointer &&
     css`
       cursor: pointer;
+    `}
+
+  ${(props) =>
+    props.bg &&
+    css`
       background-color: ${(props) => props.theme.color.black};
-      padding: 15px;
+      padding: 12px;
       border-radius: 10px;
     `}
 `;

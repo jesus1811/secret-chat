@@ -8,18 +8,16 @@ const Sala = () => {
   const router = useRouter();
   return (
     <Container title={`chat | numero ${router.query.codigo}`}>
-      <Card title={`Sala ${router.query.codigo}`}>
-        <ContentField column style={{ gap: "8px" }}>
+      <Card title={`Sala ${router.query.codigo}`} scroll>
+        <ContentField column gapCero>
           <Message end />
           <Message start />
           <Message end />
-          <Message start />
           <Message end />
-          <Message start />
         </ContentField>
-        <ContentField>
+        <ContentField absolute>
           <Field placeholder="escribe mensaje aqui" />
-          <Logo xSmall src="/send.svg" alt="icon send" />
+          <Logo xSmall pointer src="/send.svg" alt="icon send" />
         </ContentField>
       </Card>
     </Container>

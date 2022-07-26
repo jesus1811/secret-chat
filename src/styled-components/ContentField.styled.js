@@ -5,8 +5,9 @@ const ContentField = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   padding: 10px 0;
+
   ${(props) =>
     props.column &&
     css`
@@ -21,6 +22,20 @@ const ContentField = styled.div`
     props.start &&
     css`
       align-items: flex-start;
+    `}
+  ${(props) =>
+    props.absolute &&
+    css`
+      position: fixed;
+      bottom: 30px;
+      background-color: ${(props) => props.theme.color.gray};
+      width: 100%;
+      max-width: 482px;
+    `}
+    ${(props) =>
+    props.gapCero &&
+    css`
+      gap: 0;
     `}
 `;
 export default ContentField;

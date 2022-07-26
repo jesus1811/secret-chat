@@ -11,9 +11,9 @@ const Theme = {
   fontSize: {
     large: "40px",
     medium: "25px",
-    small: "22px",
-    xSmall: "20px",
-    xxSmall: "16px",
+    small: "18px",
+    xSmall: "16px",
+    xxSmall: "12px",
   },
 };
 

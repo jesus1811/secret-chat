@@ -18,7 +18,7 @@ const Access = () => {
           <Field placeholder="Ingresar contraseña" />
         </ContentField>
         <ContentField>
-          <Logo small pointer src="/google.svg" alt="google" />
+          <Logo small pointer bg src="/google.svg" alt="google" />
           <Button>Ingresar</Button>
         </ContentField>
         <ContentField>

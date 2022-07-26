@@ -1,13 +1,13 @@
 import { Title } from "../../styled-components";
 import { CardFooter, CardHead, Content } from "./Styled";
 
-const Card = ({ children, title }) => {
+const Card = ({ children, title, scroll }) => {
   return (
     <Content>
       <CardHead>
         <Title>{title}</Title>
       </CardHead>
-      <CardFooter>{children}</CardFooter>
+      <CardFooter scroll={scroll}>{children}</CardFooter>
     </Content>
   );
 };
