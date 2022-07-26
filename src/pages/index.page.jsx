@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Card, Container } from "../components";
-import useField from "../hooks/useField.hook";
+import { useField } from "../hooks";
 import { Button, ContentField, Field, Logo, Paragraph, Title } from "../styled-components";
 
 const Index = () => {

@@ -29,9 +29,9 @@ export const CardFooter = styled.article`
   ${(props) =>
     props.scroll &&
     css`
-      overflow-y: scroll;
+      overflow-y: auto;
       height: 500px;
-      padding-bottom: 100px;
-      padding-top: 100px;
+      padding-top: 120px;
+      padding-bottom: 125px;
     `}
 `;

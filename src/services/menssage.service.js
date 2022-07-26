@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const keyMessage = `${process.env.NEXT_PUBLIC_URL}/message/`;
 
-export const getMessageByRoom = async (keyMessage, id) => {
+export const getMessageByRoomService = async (keyMessage, id) => {
   try {
     const response = await axios.get(keyMessage + "room/" + id);
     if (response.status === 200) return response.data;
@@ -11,9 +11,9 @@ export const getMessageByRoom = async (keyMessage, id) => {
   }
 };
 
-export const createMessage = async (keyMessage, texto, fecha, hora, idUsuario) => {
+export const createMessageService = async (keyMessage, texto, fecha, hora, idUsuario, idSala) => {
   try {
-    const response = await axios.post(keyMessage, { texto, fecha, hora, idUsuario });
+    const response = await axios.post(keyMessage, { texto, fecha, hora, idUsuario, idSala });
     if (response.status === 200) return response.data.message;
   } catch (err) {
     console.log(err);
