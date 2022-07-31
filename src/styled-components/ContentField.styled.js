@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const ContentField = styled.div`
+export const ContentField = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -39,4 +39,3 @@ const ContentField = styled.div`
       gap: 0;
     `}
 `;
-export default ContentField;

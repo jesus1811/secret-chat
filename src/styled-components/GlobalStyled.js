@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-const GlobalStyled = createGlobalStyle`
+export const GlobalStyled = createGlobalStyle`
 *,
 ::before,
 ::after {
@@ -378,5 +378,3 @@ video {
   --tw-backdrop-sepia:  ;
 }
 `;
-
-export default GlobalStyled;

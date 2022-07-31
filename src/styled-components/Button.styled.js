@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Button = styled.button`
+export const Button = styled.button`
   background-color: ${(props) => props.theme.color.primary};
   font-size: ${(props) => props.theme.fontSize.medium};
   color: ${(props) => props.theme.color.white};
@@ -13,5 +13,3 @@ const Button = styled.button`
       cursor: initial;
     `}
 `;
-
-export default Button;

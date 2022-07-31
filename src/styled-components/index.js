@@ -1,8 +1,8 @@
-export { default as Field } from "./Field.styled";
-export { default as Button } from "./Button.styled";
-export * from "./Text.styled";
-export { default as Logo } from "./Logo.styled";
-export { default as ContentField } from "./ContentField.styled";
-export { default as Loading } from "./Loading.styled";
-export { default as Theme } from "./Theme";
-export { default as GlobalStyled } from "./GlobalStyled";
+export * from './Button.styled';
+export * from './ContentField.styled';
+export * from './Field.styled';
+export * from './GlobalStyled';
+export * from './Loading.styled';
+export * from './Logo.styled';
+export * from './Text.styled';
+export * from './Theme';

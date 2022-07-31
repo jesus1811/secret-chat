@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Logo = styled.img`
+export const Logo = styled.img`
   width: 200px;
   aspect-ratio: 1/1;
   ${(props) =>
@@ -29,4 +29,3 @@ const Logo = styled.img`
       border-radius: 10px;
     `}
 `;
-export default Logo;

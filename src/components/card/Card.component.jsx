@@ -1,7 +1,7 @@
 import { CardFooter, CardHead, Content } from "./Styled";
 import { Title } from "@/styled-components";
 
-const Card = ({ children, title, scroll }) => {
+export const Card = ({ children, title, scroll }) => {
   return (
     <Content>
       <CardHead>
@@ -11,5 +11,3 @@ const Card = ({ children, title, scroll }) => {
     </Content>
   );
 };
-
-export default Card;

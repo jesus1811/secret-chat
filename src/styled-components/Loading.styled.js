@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Loading = styled.div`
+export const Loading = styled.div`
   border: solid 6px rgba(0, 0, 0, 0.1);
   width: 64px;
   height: 64px;
@@ -17,5 +17,3 @@ const Loading = styled.div`
     }
   }
 `;
-
-export default Loading;

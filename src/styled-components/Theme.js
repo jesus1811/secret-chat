@@ -1,4 +1,4 @@
-const Theme = {
+export const Theme = {
   color: {
     primary: "#4A00B7",
     black: "#161616",
@@ -16,5 +16,3 @@ const Theme = {
     xxSmall: "12px",
   },
 };
-
-export default Theme;
