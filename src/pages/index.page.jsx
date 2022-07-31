@@ -7,6 +7,7 @@ import { Card, Container } from "@/components";
 const Index = () => {
   const router = useRouter();
   const codigoSala = useField();
+  const { user } = useUser();
   const [MessageError, setMessageError] = useState({
     message: "",
     error: false,
@@ -15,7 +16,9 @@ const Index = () => {
     if (!codigoSala.value) setMessageError({ message: "Codigo de sala invalido", error: true });
     if (codigoSala.value) router.push(`/chat/${codigoSala.value}`);
   };
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!user.uid) router.push("/access");
+  }, []);
   return (
     <Container title="Home">
       <Card title="Home">
