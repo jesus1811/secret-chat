@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { createMessageService, getMessageByRoomService, keyMessage } from "../services";
 
-const useMessage = () => {
+export const useMessage = () => {
   const router = useRouter();
   const [message, setMessage] = useState({ messages: "", active: false });
   const { data, error } = useSWR(keyMessage, (url) => getMessageByRoomService(url, router.query.codigo));
@@ -29,5 +29,3 @@ const useMessage = () => {
     message,
   };
 };
-
-export default useMessage;
