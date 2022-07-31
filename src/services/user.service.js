@@ -1,7 +1,7 @@
 import axios from "axios";
 export const keyUser = `${process.env.NEXT_PUBLIC_URL}/user`;
 
-export const createUserService = async (keyUser, id, nombreUsuario, fotoUsuario) => {
+export const createUserService = async (id, nombreUsuario, fotoUsuario) => {
   try {
     const response = await axios.post(keyUser, { id, nombreUsuario, fotoUsuario });
     if (response.status === 200) return response.data.message;
@@ -11,7 +11,7 @@ export const createUserService = async (keyUser, id, nombreUsuario, fotoUsuario)
   }
 };
 
-export const readUserService = async (keyUser, id) => {
+export const readUserService = async (id) => {
   try {
     const response = await axios.get(`${keyUser}/${id}`);
     if (response.status === 200) return response.data;

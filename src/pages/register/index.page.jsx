@@ -2,33 +2,33 @@ import { Card, Container } from "@/components";
 import { useField, useUser } from "@/hooks";
 import { Button, ContentField, Field, Logo, Paragraph } from "@/styled-components";
 import { useRouter } from "next/router";
+import React from "react";
 
-const Access = () => {
-  const { handleGoogle, handleLogin, messageLogin } = useUser();
-  const router = useRouter();
+const Register = () => {
+  const name = useField();
   const email = useField();
   const password = useField();
+  const router = useRouter();
+  const { handleRegister, messageLogin } = useUser();
 
   const handleRedirect = () => {
-    router.push("/register");
+    router.push("/access");
   };
 
   return (
-    <Container title="Access">
-      <Card title="Acceso">
+    <Container title="register">
+      <Card title="Registro">
         <Logo small src="/icon-secret-chat.svg" alt="secret chat" />
         <ContentField column>
+          <Field {...name} placeholder="Ingresar nombre" />
           <Field {...email} placeholder="Ingresar email" />
           <Field {...password} placeholder="Ingresar contraseña" type="password" />
+          <Button onClick={() => handleRegister(name.value, email.value, password.value)}>Registrar</Button>
         </ContentField>
         <ContentField>
-          <Logo small pointer bg src="/google.svg" alt="google" onClick={handleGoogle} />
-          <Button onClick={() => handleLogin(email.value, password.value)}>Ingresar</Button>
-        </ContentField>
-        <ContentField>
-          <Paragraph small>No tienes cuenta? </Paragraph>
+          <Paragraph small>ya tienes cuenta?</Paragraph>
           <Paragraph bold small onClick={handleRedirect}>
-            Registrate aqui ya!
+            ir al login
           </Paragraph>
         </ContentField>
         {messageLogin.isActive && <Paragraph>{messageLogin.message}</Paragraph>}
@@ -37,4 +37,4 @@ const Access = () => {
   );
 };
 
-export default Access;
+export default Register;

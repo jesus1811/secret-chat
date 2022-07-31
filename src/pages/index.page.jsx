@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Button, ContentField, Field, Logo, Paragraph, Title } from "@/styled-components";
-import { useField } from "@/hooks";
+import { useField, useUser } from "@/hooks";
 import { Card, Container } from "@/components";
 
 const Index = () => {
@@ -15,6 +15,7 @@ const Index = () => {
     if (!codigoSala.value) setMessageError({ message: "Codigo de sala invalido", error: true });
     if (codigoSala.value) router.push(`/chat/${codigoSala.value}`);
   };
+  useEffect(() => {}, []);
   return (
     <Container title="Home">
       <Card title="Home">

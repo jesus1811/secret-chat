@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { app } from "@/services";
-import { signInWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app, createUserService } from "@/services";
+import {
+  signInWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/store/userSlice";
 
@@ -13,9 +19,8 @@ export const useUser = () => {
 
   const handleLogin = async (email, password) => {
     try {
-      await signInWithEmailAndPassword(getAuth(app), email, password).then(({ user }) => {
-        dispatch(loginUser(user));
-      });
+      const response = await signInWithEmailAndPassword(getAuth(app), email, password);
+      dispatch(loginUser(response.user));
       setMessageLogin({ ...messageLogin, isActive: false, message: "" });
       router.push("/");
     } catch (err) {
@@ -24,15 +29,32 @@ export const useUser = () => {
     }
   };
   const handleGoogle = async () => {
-    const googleAuth = new GoogleAuthProvider();
-    await signInWithPopup(getAuth(app), googleAuth).then(({ user }) => {
-      dispatch(loginUser(user));
-    });
+    try {
+      const googleAuth = new GoogleAuthProvider();
+      const response = await signInWithPopup(getAuth(app), googleAuth);
+      await createUserService(response.user.uid, response.user.displayName, response.user.photoURL);
+      dispatch(loginUser(response.user));
+      router.push("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleRegister = async (nombre, email, password) => {
+    try {
+      const response = await createUserWithEmailAndPassword(getAuth(app), email, password);
+      const data = await createUserService(response.user.uid, nombre, "urlprueba");
+      setMessageLogin({ ...messageLogin, isActive: true, message: data });
+    } catch (err) {
+      console.log(err);
+      alert(JSON.stringify(err));
+    }
   };
   return {
     handleLogin,
     messageLogin,
     handleGoogle,
+    handleRegister,
     user,
   };
 };
