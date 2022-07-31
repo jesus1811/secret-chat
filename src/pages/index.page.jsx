@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
-import { Card, Container } from "../components";
-import { useField } from "../hooks";
-import { Button, ContentField, Field, Logo, Paragraph, Title } from "../styled-components";
+import { useRouter } from "next/router";
+import { Button, ContentField, Field, Logo, Paragraph, Title } from "@/styled-components";
+import { useField } from "@/hooks";
+import { Card, Container } from "@/components";
 
 const Index = () => {
   const router = useRouter();
@@ -23,7 +23,7 @@ const Index = () => {
         <Paragraph small>Tu chat privado donde nadie te espia 😊</Paragraph>
         <Paragraph small>o si? 🤨</Paragraph>
         <ContentField>
-          <Field {...codigoSala} placeholder="Ingresar codigo de sala" type="text" />
+          <Field {...codigoSala} placeholder="Codigo" type="text" />
           <Button onClick={handleClick}>Ingresar</Button>
         </ContentField>
         {MessageError.error && <Paragraph>{MessageError.message}</Paragraph>}

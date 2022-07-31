@@ -1,12 +1,5 @@
-import React from "react";
-import { Card, Container } from "../../components";
-import {
-  Button,
-  ContentField,
-  Field,
-  Logo,
-  Paragraph,
-} from "../../styled-components";
+import { Card, Container } from "@/components";
+import { Button, ContentField, Field, Logo, Paragraph } from "@/styled-components";
 
 const Access = () => {
   return (

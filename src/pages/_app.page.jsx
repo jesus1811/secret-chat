@@ -1,6 +1,5 @@
-import GlobalStyled from "../styled-components/GlobalStyled";
 import { ThemeProvider } from "styled-components";
-import Theme from "../styled-components/Theme";
+import { GlobalStyled, Theme } from "@/styled-components";
 
 function MyApp({ Component, pageProps }) {
   return (

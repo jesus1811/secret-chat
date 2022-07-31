@@ -1,5 +1,5 @@
-import { Title } from "../../styled-components";
 import { CardFooter, CardHead, Content } from "./Styled";
+import { Title } from "@/styled-components";
 
 const Card = ({ children, title, scroll }) => {
   return (

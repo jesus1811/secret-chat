@@ -4,3 +4,5 @@ export * from "./Text.styled";
 export { default as Logo } from "./Logo.styled";
 export { default as ContentField } from "./ContentField.styled";
 export { default as Loading } from "./Loading.styled";
+export { default as Theme } from "./Theme";
+export { default as GlobalStyled } from "./GlobalStyled";

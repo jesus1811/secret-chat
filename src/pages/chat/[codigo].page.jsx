@@ -1,8 +1,8 @@
+import { Card, Container } from "@/components";
+import { useField, useMessage } from "@/hooks";
 import { useRouter } from "next/router";
-import { Card, Container } from "../../components";
-import { useField, useMessage } from "../../hooks";
-import { ContentField, Field, Loading, Logo } from "../../styled-components";
-import { getCurrentDate, getCurrentTime } from "../../utils";
+import { ContentField, Field, Loading, Logo } from "@/styled-components";
+import { getCurrentDate, getCurrentTime } from "@/utils";
 import { Message } from "./components";
 
 const Sala = () => {
@@ -11,6 +11,7 @@ const Sala = () => {
   const texto = useField();
   const handleCreateMessage = () => {
     createMessage(texto.value, getCurrentDate(), getCurrentTime(), "jesudev");
+    texto.setValue("");
   };
   return (
     <Container title="Room">
