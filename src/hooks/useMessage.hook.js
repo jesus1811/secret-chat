@@ -10,7 +10,7 @@ export const useMessage = () => {
   const { mutate } = useSWRConfig();
 
   const createMessage = async (texto, fecha, hora, idUsuario) => {
-    const data = createMessageService(keyMessage, texto, fecha, hora, idUsuario, router.query.codigo);
+    const data = createMessageService(texto, fecha, hora, idUsuario, router.query.codigo);
     if (data) {
       setMessage({ ...message, messages: data.message, active: true });
       mutate(keyMessage);

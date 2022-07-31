@@ -28,4 +28,15 @@ export const Logo = styled.img`
       padding: 12px;
       border-radius: 10px;
     `}
+
+    ${(props) =>
+    props.rounded &&
+    css`
+      border-radius: 100%;
+    `}
+    ${(props) =>
+    props.rotate &&
+    css`
+      transform: rotate(180deg);
+    `}
 `;

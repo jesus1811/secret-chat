@@ -10,7 +10,7 @@ export const CardHead = styled.article`
   width: 100%;
   background-color: ${(props) => props.theme.color.black};
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-radius: 12px 12px 0 0;
   padding: 10px 20px;

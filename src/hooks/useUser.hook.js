@@ -43,7 +43,7 @@ export const useUser = () => {
   const handleRegister = async (nombre, email, password) => {
     try {
       const response = await createUserWithEmailAndPassword(getAuth(app), email, password);
-      const data = await createUserService(response.user.uid, nombre, "urlprueba");
+      const data = await createUserService(response.user.uid, nombre, "/icon-secret-chat.svg");
       setMessageLogin({ ...messageLogin, isActive: true, message: data });
     } catch (err) {
       console.log(err);

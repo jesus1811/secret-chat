@@ -11,7 +11,7 @@ export const getMessageByRoomService = async (keyMessage, id) => {
   }
 };
 
-export const createMessageService = async (keyMessage, texto, fecha, hora, idUsuario, idSala) => {
+export const createMessageService = async ( texto, fecha, hora, idUsuario, idSala) => {
   try {
     const response = await axios.post(keyMessage, { texto, fecha, hora, idUsuario, idSala });
     if (response.status === 200) return response.data.message;
