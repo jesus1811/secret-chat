@@ -12,12 +12,12 @@ export const getMessageByRoomService = async (keyMessage, id) => {
   }
 };
 
-export const createMessageService = async (texto, fecha, hora, idUsuario, idSala) => {
+export const createMessageService = async (texto, fecha, hora, idUsuario, idSala, router) => {
   try {
     const response = await axios.post(keyMessage, { texto, fecha, hora, idUsuario, idSala });
     if (response.status === 200) return response.data.message;
   } catch (err) {
     console.log(err);
-    return "";
+    if (err.response.status === 400) router.push("/access");
   }
 };
