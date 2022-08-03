@@ -8,7 +8,7 @@ const Message = ({ end, start, message }) => {
         {start ? (
           <>
             <Paragraph gray xxsmall>
-              <Logo xSmall src={message.fotousuario} alt="perfil" />
+              <Logo xSmall rounded src={message.fotousuario} alt="perfil" />
               <Paragraph>{message.nombreusuario}</Paragraph>
               {message?.fechamensaje?.slice(0, 10)} {message?.horamensaje.slice(0, 5)}
             </Paragraph>
@@ -17,7 +17,7 @@ const Message = ({ end, start, message }) => {
           <>
             <Paragraph gray xxsmall>
               {message?.fechamensaje?.slice(0, 10)} {message?.horamensaje.slice(0, 5)}
-              <Paragraph>{message.nombreusuario}</Paragraph> <Logo xSmall src={message.fotousuario} alt="perfil" />
+              <Paragraph>{message.nombreusuario}</Paragraph> <Logo xSmall rounded src={message.fotousuario} alt="perfil" />
             </Paragraph>
           </>
         )}

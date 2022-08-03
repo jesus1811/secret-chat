@@ -1,9 +1,9 @@
 import { Card, Container } from "@/components";
 import { useField, useMessage, useUser } from "@/hooks";
 import { useRouter } from "next/router";
-import { ContentField, Field, Loading, Logo } from "@/styled-components";
+import { ContentField, Field, Loading, Logo, Title } from "@/styled-components";
 import { getCurrentDate, getCurrentTime } from "@/utils";
-import { Message } from "./components";
+import { Message, MessageNull } from "./components";
 
 const Sala = () => {
   const router = useRouter();
@@ -20,6 +20,8 @@ const Sala = () => {
         <ContentField column gapCero>
           {isLoading ? (
             <Loading />
+          ) : messages?.length === 0 ? (
+            <MessageNull />
           ) : (
             messages?.map((message, index) => (
               <Message key={index} end start={message.idusuario !== user.uid} message={message} />

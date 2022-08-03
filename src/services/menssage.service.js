@@ -8,14 +8,16 @@ export const getMessageByRoomService = async (keyMessage, id) => {
     if (response.status === 200) return response.data;
   } catch (err) {
     console.log(err);
+    return [];
   }
 };
 
-export const createMessageService = async ( texto, fecha, hora, idUsuario, idSala) => {
+export const createMessageService = async (texto, fecha, hora, idUsuario, idSala) => {
   try {
     const response = await axios.post(keyMessage, { texto, fecha, hora, idUsuario, idSala });
     if (response.status === 200) return response.data.message;
   } catch (err) {
     console.log(err);
+    return "";
   }
 };
