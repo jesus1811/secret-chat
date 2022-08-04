@@ -7,7 +7,7 @@ export const Container = ({ children, title }) => {
       <Head>
         <title>{title}</title>
         <meta name="description" content="aplicacion web de chat" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/jesuDev.ico" />
       </Head>
       <Content>{children}</Content>
     </>

@@ -35,7 +35,7 @@ export const Logo = styled.img`
       border-radius: 100%;
     `}
     ${(props) =>
-    props.rotate &&
+    props.rotar &&
     css`
       transform: rotate(180deg);
     `}

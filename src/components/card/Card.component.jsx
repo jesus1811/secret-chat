@@ -11,7 +11,7 @@ export const Card = ({ children, title, scroll }) => {
   return (
     <Content>
       <CardHead>
-        <Logo xSmall rotate pointer src="/leave.svg" onClick={handleBack} />
+        <Logo xSmall rotar pointer src="/leave.svg" onClick={handleBack} />
         <Title>{title}</Title>
       </CardHead>
       <CardFooter scroll={scroll}>{children}</CardFooter>
