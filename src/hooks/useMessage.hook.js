@@ -18,6 +18,11 @@ export const useMessage = () => {
     socket.on("messages", (message) => {
       setMessages(message);
     });
+    return () => {
+      socket.off("messages", (message) => {
+        setMessages(message);
+      });
+    };
   }, [messages]);
 
   return {
