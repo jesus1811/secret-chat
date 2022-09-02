@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:4000");
+const socket = io("https://server-secret-chat.vercel.app/");
 
 export const useMessage = () => {
   const router = useRouter();
