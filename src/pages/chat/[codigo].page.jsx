@@ -7,7 +7,7 @@ import { Message, MessageNull } from "./components";
 
 const Sala = () => {
   const router = useRouter();
-  const { messages, isLoading, createMessage } = useMessage();
+  const { messages, createMessage } = useMessage();
   const { user } = useUser();
   const texto = useField();
   const handleCreateMessage = () => {
@@ -18,9 +18,7 @@ const Sala = () => {
     <Container title="Room">
       <Card title={`Sala ${router.query.codigo}`} scroll>
         <ContentField column gapCero>
-          {isLoading ? (
-            <Loading />
-          ) : messages?.length === 0 ? (
+          {messages?.length === 0 ? (
             <MessageNull />
           ) : (
             messages?.map((message, index) => (

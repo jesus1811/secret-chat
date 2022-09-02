@@ -1,27 +1,27 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import useSWR, { useSWRConfig } from "swr";
-import { createMessageService, getMessageByRoomService, keyMessage } from "../services";
+import io from "socket.io-client";
+
+const socket = io("http://localhost:4000");
 
 export const useMessage = () => {
   const router = useRouter();
-  const [message, setMessage] = useState({ messages: "", active: false });
-  const { data, error } = useSWR(keyMessage, (url) => getMessageByRoomService(url, router.query.codigo));
-  const { mutate } = useSWRConfig();
+  const [messages, setMessages] = useState([]);
 
-  const createMessage = async (texto, fecha, hora, idUsuario) => {
-    const data = await createMessageService(texto, fecha, hora, idUsuario, router.query.codigo, router);
-    if (data) {
-      setMessage({ ...message, messages: data.message, active: true });
-    }
-    mutate(keyMessage);
+  const createMessage = (texto, fecha, hora, idUsuario) => {
+    socket.emit("messages", { texto, fecha, hora, idUsuario, idSala: router.query.codigo });
   };
+  useEffect(() => {
+    socket.emit("initial", router.query.codigo);
+  }, []);
+  useEffect(() => {
+    socket.on("messages", (message) => {
+      setMessages(message);
+    });
+  }, [messages]);
 
   return {
-    messages: data,
-    isLoading: !error && !data,
-    isError: error,
     createMessage,
-    message,
+    messages,
   };
 };
