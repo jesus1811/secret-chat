@@ -1,6 +1,6 @@
 import { ContentField, Logo, Paragraph } from "@/styled-components";
 import { TextMessage } from "../../styled-components";
-
+import moment from "moment";
 const Message = ({ end, start, message }) => {
   return (
     <ContentField end={end} column start={start}>
@@ -8,22 +8,22 @@ const Message = ({ end, start, message }) => {
         {start ? (
           <>
             <Paragraph gray xxsmall>
-              <Logo xSmall rounded src={message.fotousuario} alt="perfil" />
-              <Paragraph>{message.nombreusuario}</Paragraph>
-              {message?.fechamensaje?.slice(0, 10)} {message?.horamensaje.slice(0, 5)}
+              <Logo xSmall rounded src={message?.user?.photo} alt="perfil" />
+              <Paragraph>{message?.user?.name}</Paragraph>
+              {moment.utc(message?.created_at).local().format("MMM DD, YYYY hh:mm A")}
             </Paragraph>
           </>
         ) : (
           <>
             <Paragraph gray xxsmall>
-              {message?.fechamensaje?.slice(0, 10)} {message?.horamensaje.slice(0, 5)}
-              <Paragraph>{message.nombreusuario}</Paragraph> <Logo xSmall rounded src={message.fotousuario} alt="perfil" />
+              {moment.utc(message?.created_at).local().format("MMM DD, YYYY hh:mm A")}
+              <Paragraph>yo</Paragraph> <Logo xSmall rounded src={message?.user?.photo} alt="perfil" />
             </Paragraph>
           </>
         )}
       </article>
       <article>
-        <TextMessage>{message?.textomensaje}</TextMessage>
+        <TextMessage>{message?.description}</TextMessage>
       </article>
     </ContentField>
   );

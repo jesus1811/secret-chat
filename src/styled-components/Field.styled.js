@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Field = styled.input`
   width: 100%;
-  max-width: 370px;
+  max-width: 100%;
   padding: 8px 20px;
   text-align: left;
   color: ${(props) => props.theme.color.white};

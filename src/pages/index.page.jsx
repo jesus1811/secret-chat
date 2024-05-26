@@ -1,38 +1,97 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { Button, ContentField, Field, Logo, Paragraph, Title } from "@/styled-components";
-import { useField, useRoom, useUser } from "@/hooks";
 import { Card, Container } from "@/components";
+import { useField } from "@/hooks";
+import { ContentField, Field, FormField, Logo } from "@/styled-components";
+import { useEffect, useState } from "react";
+import { getAllChatsService, postCreateMessage } from "@/services";
+import { Message } from "./chat/components";
+import { useRouter } from "next/router";
 
 const Index = () => {
+  const [messages, setMessages] = useState([]);
+  const [isPending, setIsPending] = useState(false);
   const router = useRouter();
-  const codigoSala = useField();
-  const { user } = useUser();
-  const { messageRoom, handleCreateRoom } = useRoom();
-  const [messageError, setMessageError] = useState({
-    message: "",
-    error: false,
-  });
-  const handleClick = () => {
-    if (!codigoSala.value) setMessageError({ message: "Codigo de sala invalido", error: true });
-    if (codigoSala.value) router.push(`/chat/${codigoSala.value}`);
+
+  const ID_USER = "e7ce61a9-0650-450c-8c16-6129c30706fb";
+  const renderUser = () => {
+    if (typeof window !== "undefined") {
+      const userString = localStorage.getItem("user");
+      const user = JSON.parse(userString);
+      return user;
+    }
+    return {};
   };
+  const texto = useField();
+  const handleCreateMessage = async () => {
+    if (texto.value === "") return;
+    try {
+      setIsPending(true);
+      await postCreateMessage({ description: texto.value, user_id: renderUser()?.id });
+
+      getAllChats();
+    } catch (error) {
+    } finally {
+      setIsPending(false);
+      texto.setValue("");
+    }
+  };
+
+  const getAllChats = async () => {
+    try {
+      const response = await getAllChatsService();
+      if (response) setMessages(response);
+    } catch (error) {
+    } finally {
+    }
+  };
+
   useEffect(() => {
-    if (!user.uid) router.push("/access");
+    getAllChats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const userString = localStorage.getItem("user");
+    const user = JSON.parse(userString);
+    if (!user) {
+      router.push("/access");
+    }
+    if (user) {
+      router.push("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <Container title="Home">
-      <Card title="Home">
-        <Logo src="/icon-secret-chat.svg" alt="secret-chat" />
-        <Title>SECRET CHAT</Title>
-        <Paragraph small>Tu chat privado donde nadie te espia 😊</Paragraph>
-        <ContentField>
-          <Field {...codigoSala} placeholder="Codigo" type="text" />
-          <Button onClick={handleClick}>Ingresar</Button>
-          <Button onClick={handleCreateRoom}>Crear</Button>
+    <Container title="Chat">
+      <Card title={`Chat`} scroll isBack>
+        <ContentField column gapCero>
+          {messages?.map((message, index) => (
+            <Message key={index} end start={message?.user?.id !== renderUser()?.id} message={message} />
+          ))}
         </ContentField>
-        {messageError.error && <Paragraph>{messageError.message}</Paragraph>}
-        {messageRoom.isActive && <Paragraph>{messageRoom.message}</Paragraph>}
+
+        <FormField
+          absolute
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (isPending) return;
+            handleCreateMessage();
+          }}
+        >
+          <Field {...texto} placeholder="escribe mensaje aqui" type="text" />
+          {!isPending && (
+            <Logo
+              xSmall
+              pointer
+              src="/send.svg"
+              alt="icon send"
+              onClick={() => {
+                if (isPending) return;
+                handleCreateMessage();
+              }}
+            />
+          )}
+        </FormField>
       </Card>
     </Container>
   );

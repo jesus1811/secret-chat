@@ -1,37 +1,59 @@
 import { Card, Container } from "@/components";
-import { useField, useUser } from "@/hooks";
-import { Button, ContentField, Field, Logo, Paragraph } from "@/styled-components";
+import { useField } from "@/hooks";
+import { loginUser } from "@/services/user/queries";
+import { Button, ContentField, Field, FormField, Logo, Paragraph } from "@/styled-components";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const Access = () => {
-  const { handleGoogle, handleLogin, messageLogin } = useUser();
   const router = useRouter();
-  const email = useField();
+  const user = useField();
   const password = useField();
+  const [error, setError] = useState();
 
-  const handleRedirect = () => {
-    router.push("/register");
+  const handleLogin = async () => {
+    const response = await loginUser({ user: user.value, password: password.value });
+    if (response?.length !== 0) {
+      const user = response?.[0];
+      localStorage.setItem("user", JSON.stringify(user));
+      return router.push("/");
+    }
+
+    return setError("Usuario y contraseña incorrecta");
   };
+
+  useEffect(() => {
+    const userString = localStorage.getItem("user");
+    const user = JSON.parse(userString);
+    if (!user) {
+      router.push("/access");
+    }
+    if (user) {
+      router.push("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container title="Access">
       <Card title="Acceso">
         <Logo small src="/icon-secret-chat.svg" alt="secret chat" />
-        <ContentField column>
-          <Field {...email} placeholder="Ingresar email" />
+        <FormField
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin();
+          }}
+          column
+        >
+          <Field {...user} placeholder="Ingresar usuario" />
           <Field {...password} placeholder="Ingresar contraseña" type="password" />
-        </ContentField>
-        <ContentField>
-          <Logo small pointer bg src="/google.svg" alt="google" onClick={handleGoogle} />
-          <Button onClick={() => handleLogin(email.value, password.value)}>Ingresar</Button>
-        </ContentField>
-        <ContentField>
-          <Paragraph small>No tienes cuenta? </Paragraph>
-          <Paragraph bold small onClick={handleRedirect}>
-            Registrate aqui ya!
-          </Paragraph>
-        </ContentField>
-        {messageLogin.isActive && <Paragraph>{messageLogin.message}</Paragraph>}
+          <ContentField>
+            {/* <Logo small pointer bg src="/google.svg" alt="google" /> */}
+            <Button onClick={() => handleLogin()}>Ingresar</Button>
+          </ContentField>
+        </FormField>
+
+        {<Paragraph>{error}</Paragraph>}
       </Card>
     </Container>
   );
