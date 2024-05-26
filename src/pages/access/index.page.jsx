@@ -12,7 +12,7 @@ const Access = () => {
   const [error, setError] = useState();
 
   const handleLogin = async () => {
-    const response = await loginUser({ user: user.value, password: password.value });
+    const response = await loginUser({ user: user.value?.toLowerCase(), password: password.value?.toLowerCase() });
     if (response?.length !== 0) {
       const user = response?.[0];
       localStorage.setItem("user", JSON.stringify(user));

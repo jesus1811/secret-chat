@@ -11,8 +11,6 @@ const Index = () => {
   const [messages, setMessages] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
-
-  const ID_USER = "e7ce61a9-0650-450c-8c16-6129c30706fb";
   const renderUser = () => {
     if (typeof window !== "undefined") {
       const userString = localStorage.getItem("user");
