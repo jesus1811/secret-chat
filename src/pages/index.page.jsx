@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getAllChatsService, postCreateMessage } from "@/services";
 import { Message } from "./chat/components";
 import { useRouter } from "next/router";
+import { supabase } from "@/services/axiosInstancia.service";
 
 const Index = () => {
   const [messages, setMessages] = useState([]);
@@ -27,7 +28,7 @@ const Index = () => {
       setIsPending(true);
       await postCreateMessage({ description: texto.value, user_id: renderUser()?.id });
 
-      getAllChats();
+      // getAllChats();
     } catch (error) {
     } finally {
       setIsPending(false);
@@ -59,6 +60,21 @@ const Index = () => {
       router.push("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const channel = supabase
+      .channel("custom-insert-channel")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "chat" }, (payload) => {
+        console.log("Change received!", payload);
+
+        getAllChats();
+      })
+      .subscribe();
+
+    return () => {
+      channel.unsubscribe();
+    };
   }, []);
 
   return (

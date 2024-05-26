@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
+    "@supabase/supabase-js": "^2.43.4",
     "axios": "^0.27.2",
     "firebase": "^9.9.1",
     "moment": "^2.30.1",
